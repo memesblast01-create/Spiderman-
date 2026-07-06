@@ -11,3 +11,18 @@ export default function App() {
   // Lenis (and therefore all scrolling) stays locked until every frame
   // has finished preloading — GSAP/ScrollTrigger only ever run after that.
   useLenis(isLoaded);
+
+  const handleLoadingExited = useCallback(() => {
+    setLoadingScreenVisible(false);
+  }, []);
+
+  return (
+    <>
+      {loadingScreenVisible && (
+        <LoadingScreen progress={progress} hasError={hasError} onExited={handleLoadingExited} />
+      )}
+
+      {isLoaded && <CanvasSequence imagesRef={imagesRef} totalFrames={totalFrames} />}
+    </>
+  );
+}
