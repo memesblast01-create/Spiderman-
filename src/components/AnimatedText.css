@@ -1,0 +1,46 @@
+.animated-text {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.animated-text__line {
+  position: absolute;
+  top: 50%;
+  margin: 0;
+  max-width: min(80vw, 620px);
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-white);
+  font-size: clamp(1.6rem, 4.4vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 18px rgba(230, 36, 41, 0.4), 0 2px 30px rgba(0, 0, 0, 0.6);
+}
+
+.animated-text__line--left {
+  left: clamp(1.25rem, 6vw, 6rem);
+  text-align: left;
+}
+
+.animated-text__line--right {
+  right: clamp(1.25rem, 6vw, 6rem);
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .animated-text__line {
+    font-size: clamp(1.35rem, 6.5vw, 2.1rem);
+    max-width: 82vw;
+  }
+
+  .animated-text__line--left {
+    left: 1.25rem;
+  }
+
+  .animated-text__line--right {
+    right: 1.25rem;
+  }
+}
