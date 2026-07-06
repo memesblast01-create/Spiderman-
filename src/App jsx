@@ -1,0 +1,13 @@
+import { useCallback, useState } from "react";
+import { useImageSequence } from "./hooks/useImageSequence.js";
+import { useLenis } from "./hooks/useLenis.js";
+import LoadingScreen from "./components/LoadingScreen.jsx";
+import CanvasSequence from "./components/CanvasSequence.jsx";
+
+export default function App() {
+  const { imagesRef, progress, isLoaded, hasError, totalFrames } = useImageSequence();
+  const [loadingScreenVisible, setLoadingScreenVisible] = useState(true);
+
+  // Lenis (and therefore all scrolling) stays locked until every frame
+  // has finished preloading — GSAP/ScrollTrigger only ever run after that.
+  useLenis(isLoaded);
