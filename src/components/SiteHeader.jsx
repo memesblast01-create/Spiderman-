@@ -6,7 +6,12 @@ export default function SiteHeader() {
 
   return (
     <header className="site-header">
-      <div className="site-header__brand">SPIDER-MAN</div>
+      <div className="site-header__scrim" />
+
+      <div className="site-header__brand">
+        <span className="site-header__brand-dot" />
+        <span className="site-header__brand-text">SPIDER-MAN</span>
+      </div>
 
       <button
         type="button"
@@ -19,6 +24,8 @@ export default function SiteHeader() {
         <span className="site-header__hamburger-line" />
         <span className="site-header__hamburger-line" />
       </button>
+
+      <div className="site-header__hairline" />
     </header>
   );
 }
