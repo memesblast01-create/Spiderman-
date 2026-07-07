@@ -7,23 +7,62 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(2rem, 5vh, 3rem);
-  background: var(--color-black);
+  gap: clamp(0.9rem, 2.4vh, 1.4rem);
+  background: radial-gradient(ellipse at 50% 30%, #0d0405 0%, var(--color-black) 62%);
   overflow: hidden;
-  padding: 4rem 1.5rem;
+  padding: 5rem 1.5rem;
   text-align: center;
+}
+
+.outro__web {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(140vw, 1400px);
+  height: min(140vw, 1400px);
+  transform: translate(-50%, -50%);
+  opacity: 0.05;
+  pointer-events: none;
+  animation: outro-web-spin 120s linear infinite;
+}
+
+.outro__web-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.outro__web-svg path {
+  fill: none;
+  stroke: var(--color-spider-red);
+  stroke-width: 1;
+}
+
+@keyframes outro-web-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .outro__glow {
   position: absolute;
-  top: 50%;
+  top: 44%;
   left: 50%;
-  width: min(90vw, 900px);
-  height: min(90vw, 900px);
+  width: min(85vw, 820px);
+  height: min(85vw, 820px);
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(230, 36, 41, 0.22) 0%, rgba(230, 36, 41, 0) 68%);
+  background: radial-gradient(circle, rgba(230, 36, 41, 0.24) 0%, rgba(230, 36, 41, 0) 68%);
   filter: blur(6px);
   pointer-events: none;
+}
+
+.outro__eyebrow {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-utility);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--color-spider-red);
 }
 
 .outro__title {
@@ -31,7 +70,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(3.2rem, 13vw, 9rem);
+  font-size: clamp(3rem, 12.5vw, 8.5rem);
   line-height: 0.95;
   letter-spacing: 0.02em;
 
@@ -43,11 +82,23 @@
   text-shadow: 0 0 40px rgba(230, 36, 41, 0.55), 0 0 90px rgba(230, 36, 41, 0.25);
 }
 
+.outro__subtitle {
+  position: relative;
+  margin: 0.4rem 0 0.6rem;
+  max-width: 480px;
+  font-family: var(--font-utility);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--color-white-dim);
+}
+
 .outro__cta {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  margin-top: 0.6rem;
   padding: 1.1rem 2.4rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -80,12 +131,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    115deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.35) 42%,
-    transparent 60%
-  );
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.35) 42%, transparent 60%);
   transform: translateX(-120%);
   animation: outro-cta-shine 3.2s ease-in-out infinite;
 }
@@ -99,41 +145,34 @@
   transform: translateX(5px);
 }
 
+.outro__footnote {
+  position: relative;
+  margin: 0.9rem 0 0;
+  font-family: var(--font-utility);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
 @keyframes outro-cta-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 24px rgba(230, 36, 41, 0.45), 0 8px 30px rgba(0, 0, 0, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(230, 36, 41, 0.75), 0 8px 30px rgba(0, 0, 0, 0.5);
-  }
+  0%, 100% { box-shadow: 0 0 24px rgba(230, 36, 41, 0.45), 0 8px 30px rgba(0, 0, 0, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(230, 36, 41, 0.75), 0 8px 30px rgba(0, 0, 0, 0.5); }
 }
 
 @keyframes outro-cta-sheen {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 @keyframes outro-cta-shine {
-  0% {
-    transform: translateX(-120%);
-  }
-  55%,
-  100% {
-    transform: translateX(120%);
-  }
+  0% { transform: translateX(-120%); }
+  55%, 100% { transform: translateX(120%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .outro__cta {
-    animation: none;
-  }
-  .outro__cta-shine {
-    display: none;
-  }
+  .outro__cta { animation: none; }
+  .outro__cta-shine { display: none; }
+  .outro__web { animation: none; }
 }
