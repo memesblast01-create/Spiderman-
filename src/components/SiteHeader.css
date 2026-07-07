@@ -10,25 +10,58 @@
   height: clamp(4.5rem, 10vh, 5.5rem);
   padding: 0 clamp(1.25rem, 5vw, 3rem);
   pointer-events: none;
-
-  /* Subtle top scrim so the header reads over any frame without
-     needing a solid bar. */
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* ---------- Brand (left) ---------- */
+.site-header__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.site-header__hairline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(230, 36, 41, 0.35) 50%,
+    transparent 100%
+  );
+}
 
 .site-header__brand {
   pointer-events: none;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
-  letter-spacing: 0.06em;
-  color: var(--color-white);
-  text-shadow: 0 0 16px rgba(230, 36, 41, 0.5), 0 2px 10px rgba(0, 0, 0, 0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
 }
 
-/* ---------- Hamburger (right) ---------- */
+.site-header__brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-spider-red);
+  box-shadow: 0 0 8px rgba(230, 36, 41, 0.9), 0 0 18px rgba(230, 36, 41, 0.5);
+  animation: site-header-dot-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes site-header-dot-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.site-header__brand-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  letter-spacing: 0.1em;
+  color: var(--color-white);
+  text-shadow: 0 0 16px rgba(230, 36, 41, 0.45), 0 2px 10px rgba(0, 0, 0, 0.6);
+}
 
 .site-header__hamburger {
   position: relative;
@@ -92,7 +125,6 @@
   .site-header {
     height: clamp(3.75rem, 12vw, 4.5rem);
   }
-
   .site-header__hamburger {
     width: 2.5rem;
     height: 2.5rem;
