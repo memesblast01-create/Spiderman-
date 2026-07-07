@@ -3,13 +3,13 @@ import { useImageSequence } from "./hooks/useImageSequence.js";
 import { useLenis } from "./hooks/useLenis.js";
 import LoadingScreen from "./components/LoadingScreen.jsx";
 import CanvasSequence from "./components/CanvasSequence.jsx";
+import SiteHeader from "./components/SiteHeader.jsx";
+import Outro from "./components/Outro.jsx";
 
 export default function App() {
   const { imagesRef, progress, isLoaded, hasError, totalFrames } = useImageSequence();
   const [loadingScreenVisible, setLoadingScreenVisible] = useState(true);
 
-  // Lenis (and therefore all scrolling) stays locked until every frame
-  // has finished preloading — GSAP/ScrollTrigger only ever run after that.
   useLenis(isLoaded);
 
   const handleLoadingExited = useCallback(() => {
@@ -22,7 +22,11 @@ export default function App() {
         <LoadingScreen progress={progress} hasError={hasError} onExited={handleLoadingExited} />
       )}
 
+      {isLoaded && <SiteHeader />}
+
       {isLoaded && <CanvasSequence imagesRef={imagesRef} totalFrames={totalFrames} />}
+
+      {isLoaded && <Outro />}
     </>
   );
 }
